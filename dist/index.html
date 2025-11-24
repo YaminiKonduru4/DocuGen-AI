@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocuGen AI - Intelligent Document Authoring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                500: '#0ea5e9', // Sky 500
+                600: '#0284c7',
+                900: '#0c4a6e',
+                dark: '#0f172a', // Slate 900
+                card: '#1e293b', // Slate 800
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      body {
+        background-color: #0f172a;
+        color: #f8fafc;
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e293b; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #475569; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b; 
+      }
+    </style>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "docx": "https://esm.sh/docx@8.5.0",
+    "file-saver": "https://esm.sh/file-saver@2.0.5",
+    "pptxgenjs": "https://esm.sh/pptxgenjs@3.12.0",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-CRRa3Dix.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DeS60bkj.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script>
+    // Create a custom cursor element and enable it by default.
+    (function(){
+      try{
+        // create cursor
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor hidden';
+        cursor.id = 'custom-cursor';
+        document.body.appendChild(cursor);
+
+        // enable by default (store preference in localStorage)
+        const pref = localStorage.getItem('useCustomCursor');
+        const useCustom = pref === null ? '1' : pref; // default enabled
+        if(useCustom === '1') document.body.classList.add('use-custom-cursor');
+
+        // update toggle UI
+        const toggle = document.createElement('button');
+        toggle.setAttribute('aria-label','Toggle custom cursor');
+        toggle.style.position = 'fixed';
+        toggle.style.right = '14px';
+        toggle.style.bottom = '14px';
+        toggle.style.zIndex = '99999';
+        toggle.style.border = 'none';
+        toggle.style.padding = '8px 12px';
+        toggle.style.borderRadius = '999px';
+        toggle.style.background = 'rgba(255,255,255,0.04)';
+        toggle.style.color = '#efe9dc';
+        toggle.style.backdropFilter = 'blur(6px)';
+        toggle.style.cursor = 'pointer';
+        toggle.style.fontSize = '13px';
+        toggle.textContent = document.body.classList.contains('use-custom-cursor') ? 'Cursor: Custom' : 'Cursor: System';
+        document.body.appendChild(toggle);
+
+        toggle.addEventListener('click', ()=>{
+          const enabled = document.body.classList.toggle('use-custom-cursor');
+          localStorage.setItem('useCustomCursor', enabled ? '1' : '0');
+          toggle.textContent = enabled ? 'Cursor: Custom' : 'Cursor: System';
+        });
+
+        // pointer movement
+        let visible = false;
+        window.addEventListener('mousemove', (e)=>{
+          visible = true;
+          cursor.classList.remove('hidden');
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+        }, {passive:true});
+
+        // small effect when hovering interactive elements
+        document.addEventListener('mouseover', (ev)=>{
+          const t = ev.target;
+          if(t && (t.tagName === 'A' || t.tagName === 'BUTTON' || (t.closest && t.closest('button')) )){
+            cursor.classList.add('small');
+          } else cursor.classList.remove('small');
+        });
+
+        // hide on leave after short timeout
+        let hideTimer;
+        document.addEventListener('mouseleave', ()=>{ hideTimer = setTimeout(()=>cursor.classList.add('hidden'), 300) });
+        document.addEventListener('mouseenter', ()=>{ clearTimeout(hideTimer); cursor.classList.remove('hidden') });
+
+        // keyboard shortcut: press 'c' to toggle custom cursor
+        window.addEventListener('keydown', (ev)=>{
+          if(ev.key === 'c' || ev.key === 'C'){
+            const enabled = document.body.classList.toggle('use-custom-cursor');
+            localStorage.setItem('useCustomCursor', enabled ? '1' : '0');
+            toggle.textContent = enabled ? 'Cursor: Custom' : 'Cursor: System';
+          }
+        });
+
+      }catch(e){/*ignore in SSR*/}
+    })();
+  </script>
+</body>
+</html>
