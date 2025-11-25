@@ -86,7 +86,7 @@ export const NewProject: React.FC<NewProjectProps> = ({ onCancel, onProjectCreat
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Q3 Market Report"
-                className="w-full bg-white/3 border border-white/6 rounded-lg p-3 text-white focus:ring-2 focus:ring-white/30 focus:border-transparent outline-none transition-all"
+                className="w-full bg-white/3 border border-white/6 rounded-lg p-3 text-black focus:ring-2 focus:ring-white/30 focus:border-transparent outline-none transition-all"
               />
             </div>
 
@@ -120,7 +120,7 @@ export const NewProject: React.FC<NewProjectProps> = ({ onCancel, onProjectCreat
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
                 placeholder="Describe what this document is about. e.g. 'Comprehensive analysis of renewable energy trends in 2024'"
-                className="w-full h-32 bg-white/3 border border-white/6 rounded-lg p-3 text-white focus:ring-2 focus:ring-white/30 focus:border-transparent outline-none transition-all resize-none"
+                className="w-full h-32 bg-white/3 border border-white/6 rounded-lg p-3 text-black focus:ring-2 focus:ring-white/30 focus:border-transparent outline-none transition-all resize-none"
               />
             </div>
 
