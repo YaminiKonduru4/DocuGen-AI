@@ -145,7 +145,7 @@ export const NewProject: React.FC<NewProjectProps> = ({ onCancel, onProjectCreat
             <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
               {sections.map((section, idx) => (
                   <div key={idx} className="flex items-center gap-3 group animate-fadeIn">
-                  <div className="text-white/60 text-sm font-mono w-6 text-right">{idx + 1}.</div>
+                  <div className="text-black/60 text-sm font-mono w-6 text-right">{idx + 1}.</div>
                   <input 
                     type="text" 
                     value={section}
