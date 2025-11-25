@@ -150,7 +150,7 @@ export const NewProject: React.FC<NewProjectProps> = ({ onCancel, onProjectCreat
                     type="text" 
                     value={section}
                     onChange={(e) => updateSection(idx, e.target.value)}
-                    className="flex-1 bg-white/3 border border-white/6 rounded p-2 text-white focus:border-white/20 outline-none"
+                    className="flex-1 bg-white/3 border border-white/6 rounded p-2 text-black focus:border-white/20 outline-none"
                   />
                   <button 
                     onClick={() => removeSection(idx)}
