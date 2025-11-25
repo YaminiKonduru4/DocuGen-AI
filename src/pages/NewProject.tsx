@@ -95,7 +95,7 @@ export const NewProject: React.FC<NewProjectProps> = ({ onCancel, onProjectCreat
               <div className="grid grid-cols-2 gap-4">
                 <button 
                   onClick={() => setType(DocType.DOCX)}
-                  className={`p-4 rounded-xl border-2 flex flex-col items-center gap-2 transition-all ${type === DocType.DOCX ? 'border-white/6 bg-white/6 text-white' : 'border-white/6 bg-white/3 text-white/80 hover:border-white/8'}`}
+                  className={`p-4 rounded-xl border-2 flex flex-col items-center gap-2 transition-all ${type === DocType.DOCX ? 'border-white/6 bg-white-gradient text-black' : 'border-white/6 bg-white/3 text-white/80 hover:border-white/8'}`}
                 >
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -104,7 +104,7 @@ export const NewProject: React.FC<NewProjectProps> = ({ onCancel, onProjectCreat
                 </button>
                 <button 
                   onClick={() => setType(DocType.PPTX)}
-                  className={`p-4 rounded-xl border-2 flex flex-col items-center gap-2 transition-all ${type === DocType.PPTX ? 'border-white/6 bg-white/10 text-white' : 'border-white/6 bg-white/3 text-white/80 hover:border-white/8'}`}
+                  className={`p-4 rounded-xl border-2 flex flex-col items-center gap-2 transition-all ${type === DocType.PPTX ? 'border-white/6 bg-white-gradient text-black' : 'border-white/6 bg-white/3 text-white/80 hover:border-white/8'}`}
                 >
                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
@@ -145,12 +145,12 @@ export const NewProject: React.FC<NewProjectProps> = ({ onCancel, onProjectCreat
             <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
               {sections.map((section, idx) => (
                   <div key={idx} className="flex items-center gap-3 group animate-fadeIn">
-                  <div className="text-black/60 text-sm font-mono w-6 text-right">{idx + 1}.</div>
+                  <div className="text-white/60 text-sm font-mono w-6 text-right">{idx + 1}.</div>
                   <input 
                     type="text" 
                     value={section}
                     onChange={(e) => updateSection(idx, e.target.value)}
-                    className="flex-1 bg-white/3 border border-white/6 rounded p-2 text-black focus:border-white/20 outline-none"
+                    className="flex-1 bg-white/3 border border-white/6 rounded p-2 text-black placeholder-black/60 focus:border-white/20 outline-none"
                   />
                   <button 
                     onClick={() => removeSection(idx)}
